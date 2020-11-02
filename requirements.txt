@@ -1,0 +1,38 @@
+Design requirements:
+
+- must follow mvc
+- php 7.2+  mysql
+- autoloading classes
+- use pdo
+- use git and github
+- password hashing ang security
+
+Application requirements:
+- on loading site unlogged users should see:
+        -total number of users registered and total number of images posted
+        -button for rregistration and login (should have remember me)
+                -username
+                -email
+                -password
+                -repeated password
+
+-logged in users should see:
+        -all uploaded images showing:
+                -username and email of  poster
+                -if same user who posted show delete button
+        -option to see images posted by same user
+
+        -account link to:
+            -change password/email/username
+            -delete account
+
+Database structure:
+        -tables
+                -users table (userId,username,email,user password)
+                -images table (image id,image name,user id, posted at)
+
+-pages:
+        -index page shows basic information for unlogged users
+        -index page shows pictures for logged users
+        -views contianing forms to be loaded using ajax as required
+        
