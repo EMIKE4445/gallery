@@ -44,11 +44,7 @@ class gallery extends database{
         $sql ="DELETE * FROM IMAGES WHERE image_id=:id ";
         $prep= $this->conn->prepare($sql);
         $result=$prep->execute(['id'=>$image_id]);
-        if($result){
-            echo "deleted image sucessfully";
-        }else{
-            echo "could not delete";
-        }
+        return $result? true:false;
     }
 
     public function get_image_user($image_id){
