@@ -34,6 +34,14 @@ class user extends gallery{
         }
     }
 
+    public function confirm_user_password($id,$password){
+        $sql="SELECT user_pasword from users where id=:id";
+        $prep=$this->conn->prep($sql);
+        $result=$prep->execute(['id'=>$id]);
+        $result=$result->fetch();
+        return $result==$password? true:false;
+    }
+
     public function register($username,$email,$password){
        $sql="INSERT INTO USERS(username,email,user_password) VALUES(:username,:email,:Upassword)";
        $prep=$this->conn->prepare($sql);
