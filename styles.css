@@ -1,0 +1,381 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background-color: white;
+    font-size: 16px;
+    font-family: 'montserrat', sans-serif;
+    letter-spacing: -0.2px;
+    overflow-x: hidden;
+
+    
+}
+
+.header-bar{
+   /* position: absolute;*/
+    background-color:  #4a4747;
+    display: block;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    
+}
+
+.users-no{
+    color: wheat;
+
+}
+
+.site-logo span{
+    font-size: 50px;
+    color: bisque;
+    margin-left: 25px;
+}
+.users-no{
+    position: absolute;
+    right: 40px;
+    top: 35px;
+}
+
+.form-div{
+    position: absolute;
+    width: 320px;
+    height: 420px;
+    top: 20%;
+    right: 10%;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    box-shadow: 5px 3px 9px 1px black;
+    height: fit-content;
+}
+
+.form-div input{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.form-div input[type="text"], input[type="password"],input[type="email"]{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    
+    
+}
+.form-div input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.form-div input[type="submit"]:hover{
+    background: #ffc107;
+    cursor: pointer;
+    
+}
+
+
+.cta{
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    font-size: 2rem;
+    color: teal;
+}
+
+
+
+
+
+
+
+.footer{
+    position: relative;
+    
+    background-color :rgb(218 216 204);
+    width: 100vw;
+    text-align: center;
+    height: 50px;
+    bottom: 0px;
+    opacity: 0.8;
+}
+
+.header-bar .acc-actions{
+    display: inline-block;
+    position: absolute;
+    right: 1vw;
+    top: 2vh;
+}
+.account{
+    text-decoration: none;
+    color: #999a8cb5;
+    font-size: 30px;
+}
+
+.view-by{
+    position: absolute;
+    left: 50%;
+}
+
+.view-by form{
+    margin-top: 2vh;
+}
+
+.view-by select{
+    border: none;
+    background: transparent;
+    width: 150px;
+    height: 40px;
+    outline: none;
+    font-size: 18px;
+}
+
+#view-btn{
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 7vw;
+    background: #553939;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 2px;
+}
+
+.user-info{
+    font-size: 0.9em;
+    margin-left: 3vw;
+    margin-top: 3vh;
+    color: #6a7571;
+}
+.user-info span{
+   margin-left: 10px;
+}
+
+.acc-list{
+    position: fixed;
+    display: none;
+    background-color: #262626;
+    list-style-type: none;
+    height:fit-content ;
+    padding: 4px;
+    z-index: 2 !important;
+    
+    right: 2vw;
+
+}
+.acc-list li{
+   /* display: block;*/
+    height: 30px;
+    margin: 10px 5px;
+    width: 100%;
+    
+
+}
+
+.acc-list a{
+    text-decoration: none;
+    color: #818181;
+    padding: 6px 8px 6px 16px;
+    width: 100%;
+}
+.acc-list a:hover{
+    background-color: blanchedalmond;
+}
+
+.acc-actions:hover .acc-list {
+    display: block;
+}
+
+
+.image-upload{
+    position: absolute;
+    width: 320px;
+    height: 420px;
+    top: 20%;
+    right: 50%;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    box-shadow: 5px 3px 9px 1px black;
+   
+}
+
+
+.image-upload input{
+    width: 100%;
+    margin-bottom: 90px;
+
+}
+
+.image-upload input[type='text']{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+}
+
+
+.image-upload input[type='submit']{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.image-upload input[type='submit']:hover{
+    background: #ffc107;
+    cursor: pointer;
+}
+
+.main-l{
+    z-index: -10;
+}
+
+.main-l-images{
+    position: relative;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+}
+
+.image-container{
+    position: relative;
+    width: 300px;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+    max-width: 50%;
+    margin: 10px;
+}
+
+.image-image{
+
+    width: 100%;
+    height: 300px;
+    
+    object-fit: cover;
+}
+
+.image-data{
+    position: relative;
+    width: 100%;
+   
+    margin-top: 1px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

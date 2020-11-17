@@ -21,12 +21,15 @@ if(!$user->is_logged()){?>
              <span>Gallery</span> 
         </div>
         <div class="users-no">
-            <span>users number should be here</span>
+            <p class="users-no-p" id="users-no"></p>
         </div>
     </header>
     <div class="main-u">
-        <div class="form-div">    
+        
+        <div><p class="cta"><span>sign-in</span> to upload and view pictures <a href="#" class="register-link" id="register-link">Or register</a></p></div>
+        <div class="form-div" id="form-div">    
         </div>
+        
     </div>
 
 
@@ -36,27 +39,35 @@ if(!$user->is_logged()){?>
             <div class="site-logo">
                 <span>Gallery</span> 
             </div>
+            <div class="user-info" id="user-info">
+                <span id="username"></span>
+                <span id="id">id: <span id="id-no"></span></span>
+
+            </div>
             <div class="view-by" id="view-by">
-                <form>
+                <form id="view-by-form" onsubmit="event.preventDefault(); load_images()">
                     <select name="view" id="view">
-                        <option value="my pictures">My pictures</option>
-                        <option value="all pictures">All pictures</option>
+                        <option value="1">My pictures</option>
+                        <option value="2">All pictures</option>
                     </select>
-                    <button id="view-btn">view</button>
+                    
+                    <input type="submit" id="view-btn" value="view">
                 </form>  
             </div>
 
             <div class="acc-actions">
-                <span class="account">account</span>
+                <a href="#" class="account">Account</a>
                 <ul class="acc-list">
-                    <li id='chpass'>change password</li>
-                    <li id='delacc'>delete account</li>
+                    <li><a href="#" id="upload-picture">upload picture</a></li>
+                    <li><a href="#">change password</a></li>
+                    <li><a href="#">delete account</a></li>
+                    <li><a href="#">logout</a></li>
                 </ul>
             </div>
 
         </header>
-
-        <div class="main-l">
+        
+        <div class="main-l" id="main-l">
 
         </div>
 
@@ -64,10 +75,10 @@ if(!$user->is_logged()){?>
 
 echo<<<EOF
     
-        <footer>
+        <footer class="footer">
         Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
         </footer>
-        <script src="application.js"></script>
+        <script src='application.js'></script>
     </body>
     </html>
 EOF;

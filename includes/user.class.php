@@ -1,6 +1,6 @@
 <?php
 require_once('autoloader.php');
-
+session_start();
 class user extends gallery{
 
 
@@ -43,12 +43,14 @@ class user extends gallery{
     }
 
     public function register($username,$email,$password){
-       $sql="INSERT INTO USERS(username,email,user_password) VALUES(:username,:email,:Upassword)";
+       $sql="INSERT INTO USERS(username,email,user_password) VALUES(:username,:email,:upassword)";
        $prep=$this->conn->prepare($sql);
-       $result=$prep->execute(['username'=>$username,'email'=>$email,'user_password'=>$password]);
+       $result=$prep->execute(['username'=>$username,'email'=>$email,'upassword'=>$password]);
        if($result){
+           
            return true;
        }else{
+           var_dump($result);
            return false;
        }
     }
@@ -57,23 +59,34 @@ class user extends gallery{
         $sql='SELECT id FROM USERS WHERE username =:user AND user_password=:pass';
         $prep=$this->conn->prepare($sql);
         $result=$prep->execute(['user'=>$username,'pass'=>$password]);
-        $result=$result->fetch();
+        $id=$prep->fetch();
+        $id=$id['id'];
         if($result){
-            return $result;
+            return $id;
         }else{
             return false;
         }
     }
     
-    function is_logged(){
-        if(isset($_SESSION['logged_user'])){
-            echo "is logged";
+    public function is_logged(){
+        if(isset($_SESSION['id'])){
+            // echo "is logged";
             return true;
         }else{
-            echo 'is not logged';
+            // echo 'is not logged';
+            var_dump($_SESSION);
             return false;
         }
     
+    }
+
+    public function get_user_details($id){
+        $sql='SELECT id,username FROM USERS WHERE id=:id';
+        $prep=$this->conn->prepare($sql);
+        
+        $prep->execute(['id'=>$id]);
+        $user=$prep->fetch();
+        return $user;
     }
 
 }

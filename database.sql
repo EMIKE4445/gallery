@@ -2,7 +2,7 @@ drop database if exists gallery;
 CREATE DATABASE gallery;
 use gallery;
 create table users(
-    id int primary key not null,
+    id int primary key not null AUTO_INCREMENT,
     username varchar(20) not null,
     email varchar(30) not null,
     user_password varchar(20) not null

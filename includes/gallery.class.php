@@ -4,7 +4,7 @@
 
 class gallery extends database{
 
-    private $conn;
+    protected $conn;
 
 
     public function __construct(){
@@ -12,46 +12,40 @@ class gallery extends database{
     }
 
     public function get_all_images(){
-       $sql="SELECT * FROM IMAGES" ;
+       $sql="SELECT i.*, u.username FROM IMAGES i JOIN USERS u ON i.user_id =u.id" ;
        $prep=$this->conn->prepare($sql);
-       $result=$prep->execute();
-       $reult=$result->fetchAll();
+       $prep->execute();
+       $result=$prep->fetchAll();
        return $result;
     }
     
     public function get_image_by_id($id){
-        $sql="SELECT * FROM IMAGES WHERE USER_ID = :user";
+        $sql="SELECT * FROM IMAGES WHERE user_id = :user";
         $prep=$this->conn->prepare($sql);
-        $result=$prep->execute(['user'=>$id]);
-        $result=$result->fetchAll();
+        $prep->execute(['user'=>$id]);
+        $result=$prep->fetchAll();
         return $result;
     }
 
     public function insert_image($image_name,$user_id){
         $sql="INSERT INTO IMAGES (image_name,user_id) VALUES(:img_name,:user)";
         $prep=$this->conn->prepare($sql);
-        $result=$prep->execute(['img_name'=>$image_name,'user'=>$user_id]);
-        if($result){
-           // echo 'added sucessfully';
-            return 1;
-        }else{
-            echo 'could not add image';
-            return false;
-        }
+        return $prep->execute(['img_name'=>$image_name,'user'=>$user_id])? true : false;
+        
     }
 
     public function delete_image($image_id){
         $sql ="DELETE * FROM IMAGES WHERE image_id=:id ";
         $prep= $this->conn->prepare($sql);
-        $result=$prep->execute(['id'=>$image_id]);
-        return $result? true:false;
+        return $prep->execute(['id'=>$image_id])? true:false;
+        
     }
 
     public function get_image_user($image_id){
         $sql="SELECT user_id from images where id=:image_id";
         $prep=$this->conn->prepare($sql);
-        $result=$prep->execute(['image_id'=>$image_id]);
-        $result=$result->fetch();
+        $prep->execute(['image_id'=>$image_id]);
+        $result=$prep->fetch();
         return $result;
     }
 
@@ -59,19 +53,16 @@ class gallery extends database{
     public function delete_user_image($user_id){
         $sql ="DELETE * FROM IMAGES WHERE user_id=:id ";
         $prep= $this->conn->prepare($sql);
-        $result=$prep->execute(['id'=>$user_id]);
-        if($result){
-           return true;
-        }else{
-            return false;
-        }
+        return $prep->execute(['id'=>$user_id])? true: false;
+    
     }
 
-    static public function total_number_of_users(){
-        $sql="SELECT COUNT FROM USERS";
+    public function total_number_of_users(){
+        $sql="SELECT COUNT(*) as num FROM users";
         $prep=$this->conn->prepare($sql);
-        $result=$prep->execute();
-        $result=$result->fetchAll();
+        $prep->execute();
+        $result=$prep->fetchAll();
+        $result=$result[0];
         return $result;
     }
  }
