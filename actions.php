@@ -54,14 +54,14 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
                 case('update_password'):{
                     $id=$_POST['id'];
                     $old_pass=$_POST['old_pass'];
-                    $new_pass=$_post['new_pass'];
+                    $new_pass=$_POST['new_pass'];
                     $confirm_pass=$_POST['cpass'];
 
                    
                         if($id==$_SESSION['id']){
                             if($new_pass=$confirm_pass){
                                 if($user->confirm_user_password($id,$old_pass)){
-                                    if($user->update_password($id,$password)){
+                                    if($user->update_password($id,$new_pass)){
                                         echo json_encode('password updated');
                                     }else{
                                         echo json_encode('could not udate password');
@@ -91,7 +91,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
                             echo json_encode('could not delete ccount');
                         }
                     }else{
-                        echo json_encode('coul not delete account');
+                        echo json_encode('could not delete account');
                     }
                    
                     break;
@@ -152,6 +152,15 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
                     }
                     
                      
+                    break;
+                }
+
+                case('logout'):{
+                    unset($_SESSION['logged_user']);
+                    session_destroy();
+                    echo json_encode('you have been logged out');
+                    
+                    
                     break;
                 }
                 

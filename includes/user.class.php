@@ -24,9 +24,9 @@ class user extends gallery{
     }
 
     public function update_password($id,$password){
-        $sql="UPDATE USERS SET user_password= :pass WHERE ID=:ID";
+        $sql="UPDATE USERS SET user_password= :pass WHERE id=:id";
         $prep=$this->conn->prepare($sql);
-        $result=$prep->execute(['pass'=>$password,'ID'=>$id]);
+        $result=$prep->execute(['pass'=>$password,'id'=>$id]);
         if($result){
             return true;
         }else{
@@ -35,11 +35,12 @@ class user extends gallery{
     }
 
     public function confirm_user_password($id,$password){
-        $sql="SELECT user_pasword from users where id=:id";
-        $prep=$this->conn->prep($sql);
+        $sql="SELECT user_password from users where id=:id";
+        $prep=$this->conn->prepare($sql);
         $result=$prep->execute(['id'=>$id]);
-        $result=$result->fetch();
-        return $result==$password? true:false;
+        $result=$prep->fetch();
+        
+        return $result['user_password']==$password? true:false;
     }
 
     public function register($username,$email,$password){

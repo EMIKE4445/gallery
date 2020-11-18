@@ -59,9 +59,9 @@ if(!$user->is_logged()){?>
                 <a href="#" class="account">Account</a>
                 <ul class="acc-list">
                     <li><a href="#" id="upload-picture">upload picture</a></li>
-                    <li><a href="#">change password</a></li>
-                    <li><a href="#">delete account</a></li>
-                    <li><a href="#">logout</a></li>
+                    <li><a href="#" id="change-password">change password</a></li>
+                    <li><a href="#" id="delete-account">delete account</a></li>
+                    <li><a href="#" id="logout">logout</a></li>
                 </ul>
             </div>
 

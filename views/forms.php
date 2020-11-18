@@ -39,6 +39,22 @@ if(isset($_GET['form'])){
            break;
 
         }
+
+
+        case('change_password'):{
+            echo<<<eol
+            <form class="change-password-form" id="change-password-form" onsubmit="event.preventDefault(); change_user_password()">
+                <label for="old_password">password:</label><br><input type="password" name="password" id="old-password" placeholder="password.."><br>
+                <label for="password">new password:</label><br><input type="password" name="password" id="new-password" placeholder="new password.."><br>
+                <label for="confirm_password">confirm new password:</label><br><input type="password" name="confirm_password" id="confirm-password" placeholder="confirm new password"><br>
+                <div class="message" id="message"></div>
+                <input type="submit" value="submit" id="change-btn">
+            </form>
+            eol;
+            break;
+        }
+
+
         default:{
             echo "in switch but no catch";
         }

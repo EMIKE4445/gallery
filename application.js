@@ -277,3 +277,100 @@ setTimeout(load_images,0500);
 
 
 
+
+
+//adding event functions to account actions
+
+let change_password=document.getElementById('change-password');
+let delete_account=document.getElementById('delete-account');
+let logout=document.getElementById('logout');
+
+change_password.addEventListener('click',display_password_form);
+delete_account.addEventListener('click',delete_account_function);
+logout.addEventListener('click',logout_function);
+
+function display_password_form(){
+    let request= new XMLHttpRequest();
+    request.open('GET','views/forms.php?form=change_password');
+    
+    request.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200){
+            let form=document.createElement('div');
+            form.classList+=' form-div-password';
+            form.innerHTML= this.response;
+            
+            //emptying main display
+            main_display.innerHTML='';
+
+            main_display.appendChild(form)
+        }
+    };
+    request.send();
+}
+
+function change_user_password(){
+    let old_password = document.getElementById('old-password').value;
+    let new_password = document.getElementById('new-password').value;
+    let confirm_password = document.getElementById('confirm-password').value;
+    let message=document.getElementById('message');
+    let id=get_user_id();
+
+    if(new_password===confirm_password){
+        let request=new XMLHttpRequest();
+        request.open('POST','actions.php');
+        request.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        request.onreadystatechange=function(){
+            if(this.status==200 && this.readyState==4){
+                let response=JSON.parse(this.response);
+                message.innerText=response;
+                if(response=='password updated'){
+                    setTimeout(reload,1000);
+                }
+                
+            }
+        };
+        request.send('action=update_password&old_pass='+old_password+'&new_pass='+new_password+'&cpass='+confirm_password+'&id='+id);
+
+    }else{
+        message.innerText='passwords do not match';
+    }
+
+}
+
+function reload(){
+    location.reload();
+}
+
+function delete_account_function(){
+    let delete_promt= confirm('Do you want to delete account?');
+    if(delete_promt){
+        let request= new XMLHttpRequest();
+        request.open('POST','actions.php');
+        request.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        request.onreadystatechange=function(){
+            if(this.status==200 && this.readyState==4){
+                alert(JSON.parse(this.response));
+                if(JSON.parse(this.response)=='account deleted'){
+                    setTimeout(reload,1000);
+                }
+            }
+        };
+        request.send('action=delete_account');
+    }
+}
+
+function logout_function(){
+    let logout_promt=confirm('do you want to logout?');
+    if(logout_promt){
+        let request=new XMLHttpRequest();
+        request.open('POST','actions.php');
+        request.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200){
+                alert(JSON.parse(this.response));
+                setTimeout(reload,0500);
+            }
+        };
+        request.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        request.send('action=logout');
+    }
+}
