@@ -54,9 +54,10 @@ if(!$user->is_logged()){?>
                     <input type="submit" id="view-btn" value="view">
                 </form>  
             </div>
-
+            
             <div class="acc-actions">
                 <a href="#" class="account">Account</a>
+                <img src="images/app_images/menu.svg" alt="menu" class="menu-ham" id="menu-ham">
                 <ul class="acc-list">
                     <li><a href="#" id="upload-picture">upload picture</a></li>
                     <li><a href="#" id="change-password">change password</a></li>
@@ -64,7 +65,7 @@ if(!$user->is_logged()){?>
                     <li><a href="#" id="logout">logout</a></li>
                 </ul>
             </div>
-
+            
         </header>
         
         <div class="main-l" id="main-l">

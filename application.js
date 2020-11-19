@@ -129,8 +129,18 @@ function load_images (){
         if(this.readyState==4 && this.status==200){
             
             let response=JSON.parse(this.response);
-            display_images(response);
-            // console.log(response);
+            if(response!=='error'){
+                display_images(response);
+            }else{
+               
+                    let message = document.createElement('p');
+                    message.innerText='No image to display';
+                    message.classList+=' no-image-message';
+                    main_display.innerHTML="";
+                    main_display.appendChild(message);
+                
+            }
+             
         }
     };
     request.send();
@@ -168,64 +178,67 @@ function get_user_id(){
 
 function display_images(image_array){
     let fragment=document.createDocumentFragment();
-    
-    for(let i=0; i<image_array.length;i++){
-      
-    let container=document.createElement('div');
-    let image=document.createElement('img');
-    let data=document.createElement('div');
-    let time=document.createElement('span');
-    let user =document.createElement('span');
-    image.src='images/uploaded_images/'+image_array[i]['image_name'];
-    time.innerText="posted at "+image_array[i]['posted_at'];
-
-    //
-
-    if(image_array[i]['user_id']==get_user_id()){
-        user.innerText='posted by you';
-    }else{
-        user.innerText='posted by '+image_array[i]['username'];
-    }
-    
-
+  
+       console.log(image_array);
+        for(let i=0; i<image_array.length;i++){
         
-     //appending image details
-     data.appendChild(time);
-     data.appendChild(user);
-     
-        //adding class to image data
-        data.classList+=' image-data';
+        let container=document.createElement('div');
+        let image=document.createElement('img');
+        let data=document.createElement('div');
+        let time=document.createElement('span');
+        let user =document.createElement('span');
+        image.src='images/uploaded_images/'+image_array[i]['image_name'];
+        time.innerText="posted at "+image_array[i]['posted_at'];
 
-        //adding class to image
-        image.classList+=' image-image';
+        //
 
-        //adding class to container
-        container.classList+=' image-container';
+        if(image_array[i]['user_id']==get_user_id()){
+            user.innerText='posted by you';
+        }else{
+            user.innerText='posted by '+image_array[i]['username'];
+        }
+        
 
-     //appending image and details
-     container.appendChild(image);
-     container.appendChild(data);
-     
-     //appending to document fragment
-     fragment.appendChild(container);
-     
+            
+        //appending image details
+        data.appendChild(time);
+        data.appendChild(user);
+        
+            //adding class to image data
+            data.classList+=' image-data';
 
-    }
-    //appending to image display
-    let image_wrap=document.createElement('div');
-    image_wrap.classList+=' main-l-images';
-    image_wrap.appendChild(fragment);
+            //adding class to image
+            image.classList+=' image-image';
 
-    //finally appending to page
+            //adding class to container
+            container.classList+=' image-container';
+
+        //appending image and details
+        container.appendChild(image);
+        container.appendChild(data);
+        
+        //appending to document fragment
+        fragment.appendChild(container);
+
+        document.getElementsByClassName('no-image-message')[0].style.display='none';
+
+        }
+        //appending to image display
+        let image_wrap=document.createElement('div');
+        image_wrap.classList+=' main-l-images';
+        image_wrap.appendChild(fragment);
+
+        //finally appending to page
+        
+
+        let existing=document.getElementsByClassName('main-l-images');
     
-
-    let existing=document.getElementsByClassName('main-l-images');
-   
-    if(existing.length>0){
-        main_display.replaceChild(image_wrap,existing[0]);
-    }else{
-        main_display.appendChild(image_wrap);
-    }
+        if(existing.length>0){
+            main_display.replaceChild(image_wrap,existing[0]);
+        }else{
+            main_display.appendChild(image_wrap);
+        }
+    
 }
 
 

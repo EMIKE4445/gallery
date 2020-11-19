@@ -185,7 +185,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
             
                 $user_id=$_GET['id'];
                 $results=$user->get_image_by_id($user_id);
-                echo $results? json_encode($results): json_encode('could not get images');
+                echo $results? json_encode($results): json_encode('error');
                 break;
                 
             }
