@@ -75,7 +75,7 @@ class user extends gallery{
             return true;
         }else{
             // echo 'is not logged';
-            var_dump($_SESSION);
+            
             return false;
         }
     

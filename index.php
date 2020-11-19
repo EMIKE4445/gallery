@@ -26,7 +26,7 @@ if(!$user->is_logged()){?>
     </header>
     <div class="main-u">
         
-        <div><p class="cta"><span>sign-in</span> to upload and view pictures <a href="#" class="register-link" id="register-link">Or register</a></p></div>
+        <div class="cta-div"><p class="cta"><span>sign-in</span> to upload and view pictures <span onclick="display_register_form()" class="register-link" id="register-link">Or register</span></p></div>
         <div class="form-div" id="form-div">    
         </div>
         

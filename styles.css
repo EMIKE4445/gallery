@@ -38,12 +38,30 @@ body{
     top: 35px;
 }
 
+.register-link{
+    cursor: pointer;
+    color: cadetblue;
+    text-decoration: underline;
+}
+
+.maun-u{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cta-div{
+   margin:40px;
+   text-align: center;
+}
+
 .form-div{
-    position: absolute;
+    margin-left: 35%;
+    position:relative;
     width: 320px;
-    height: 420px;
-    top: 20%;
-    right: 10%;
+    
+    /* top: 20%;
+    right: 10%; */
     box-sizing: border-box;
     padding: 20px 30px;
     box-shadow: 5px 3px 9px 1px black;
@@ -82,9 +100,9 @@ body{
 
 
 .cta{
-    position: absolute;
+    /* position: absolute;
     left: 10%;
-    top: 30%;
+    top: 30%; */
     font-size: 2rem;
     color: teal;
 }

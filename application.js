@@ -8,6 +8,19 @@ let user_info=document.getElementById('user-info');
 
 
 
+function display_register_form(){
+    let request=new XMLHttpRequest();
+    request.open('GET','views/forms.php?form=register');
+    request.send();
+    request.onreadystatechange=function (){
+        if(this.readyState==4 && this.status==200) {
+            formDiv.innerHTML=this.responseText;
+        }
+    };
+
+    
+}
+
 
 window.onload=function(){
     let request=new XMLHttpRequest();
@@ -20,7 +33,7 @@ window.onload=function(){
     };
 
 };
-console.log(5);
+
 window.addEventListener('load',get_users_no);
 
 function get_users_no(){
@@ -45,21 +58,10 @@ function get_users_no(){
         }
     };
 }
-console.log(9);
-// registerBtn.addEventListener('click',function(){
-//     let request=new XMLHttpRequest();
-//     request.open('GET','views/forms.php?form=register');
-//     request.send();
-//     request.onreadystatechange=function (){
-//         if(this.readyState==4 && this.status==200) {
-//             formDiv.innerHTML=this.responseText;
-//         }
-//     };
 
-    
-// });
 
-console.log(12);
+
+
 
 //functions are called from inline onsubmit attriute
 function register_user(){
@@ -86,7 +88,7 @@ function register_user(){
    
 }
 
-console.log(9);
+
 function log_user_in(){
     //event.prevantDefault();
     let username=document.getElementById('username').value;
@@ -100,9 +102,9 @@ function log_user_in(){
             
             // console.log(this.responseText);
         
-             if(this.responseText=='success'){
-                 //location.reload();
-                 console.log('tested success');
+             if(JSON.parse(this.responseText)=='success'){
+                 reload();
+                 
              }else{
                  alert('could not login');
              }
@@ -138,6 +140,7 @@ function load_images (){
 window.addEventListener('load',get_user_details);
 
 function get_user_details(){
+    
     let request = new XMLHttpRequest();
     request.open('GET','actions.php?request=get_user_details');
     request.onreadystatechange=function(){
@@ -167,10 +170,7 @@ function display_images(image_array){
     let fragment=document.createDocumentFragment();
     
     for(let i=0; i<image_array.length;i++){
-        console.log(image_array[i]['image_name']);
-        console.log(image_array[i]['id']);
-        console.log(image_array[i]['posted_at']);
-        console.log(image_array[i]['user_id']);
+      
     let container=document.createElement('div');
     let image=document.createElement('img');
     let data=document.createElement('div');
@@ -220,7 +220,7 @@ function display_images(image_array){
     
 
     let existing=document.getElementsByClassName('main-l-images');
-   console.log(existing);
+   
     if(existing.length>0){
         main_display.replaceChild(image_wrap,existing[0]);
     }else{
