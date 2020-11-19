@@ -19,11 +19,11 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
                 $id=$user->verify_user($username,$password);
                 $_SESSION['id']=$id;
 
-                echo "registerd sucessfully";
+                echo json_encode("registered successfully");
                 
             }else{
-                echo "could not register";
-                var_dump($registered);
+                echo json_encode("could not register");
+                
             }
             exit;
        
@@ -82,11 +82,14 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
                 }
 
                 case('delete_account'):{
-                    $user_id=$_post['id'];
+                    $user_id=$_POST['id'];
                     //check if id is same as logged user
                     if($user_id==$_SESSION['id']){
-                        if($user->delete_account($id)){
+                        if($user->delete_account($user_id)){
+                            unset($_SESSION['logged_user']);
+                            session_destroy();
                             echo json_encode('account deleted');
+
                         }else{
                             echo json_encode('could not delete ccount');
                         }

@@ -5,20 +5,22 @@ class user extends gallery{
 
 
     public function delete_account($id){
-        $sql="DELETE * FROM USERS WHERE ID=:ID";
+        
+        $sql="DELETE FROM users WHERE id=:ID";
         $prep=$this->conn->prepare($sql);
         $result=$prep->execute(['ID'=>$id]);
+        
         if($result){
             if($this->delete_user_image($id)){
-                echo "account deleted";
+                
                 return 1;
             }else{
-                echo "could not delete user images";
+                return false;
             }
 
            
         }else{
-            echo "could not delete account";
+            
             return false;
         }
     }
@@ -26,6 +28,7 @@ class user extends gallery{
     public function update_password($id,$password){
         $sql="UPDATE USERS SET user_password= :pass WHERE id=:id";
         $prep=$this->conn->prepare($sql);
+        $password=password_hash($pasword,PASSWORD_DEFAULT);
         $result=$prep->execute(['pass'=>$password,'id'=>$id]);
         if($result){
             return true;
@@ -39,13 +42,15 @@ class user extends gallery{
         $prep=$this->conn->prepare($sql);
         $result=$prep->execute(['id'=>$id]);
         $result=$prep->fetch();
+        $hashed_password=$result['user_password'];
         
-        return $result['user_password']==$password? true:false;
+        return password_verify($password,$hashed_password)? true:false;
     }
 
     public function register($username,$email,$password){
        $sql="INSERT INTO USERS(username,email,user_password) VALUES(:username,:email,:upassword)";
        $prep=$this->conn->prepare($sql);
+       $password=password_hash($password,PASSWORD_DEFAULT);
        $result=$prep->execute(['username'=>$username,'email'=>$email,'upassword'=>$password]);
        if($result){
            
@@ -57,12 +62,14 @@ class user extends gallery{
     }
 
     public function verify_user($username,$password){
-        $sql='SELECT id FROM USERS WHERE username =:user AND user_password=:pass';
+        $sql='SELECT id,user_password FROM USERS WHERE username =:user';
         $prep=$this->conn->prepare($sql);
-        $result=$prep->execute(['user'=>$username,'pass'=>$password]);
-        $id=$prep->fetch();
-        $id=$id['id'];
-        if($result){
+        
+        $result=$prep->execute(['user'=>$username]);
+        $result=$prep->fetch();
+        $id=$result['id'];
+        $hashed_password=$result['user_password'];
+        if(password_verify($password,$hashed_password)){
             return $id;
         }else{
             return false;

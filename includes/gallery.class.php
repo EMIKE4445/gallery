@@ -35,7 +35,7 @@ class gallery extends database{
     }
 
     public function delete_image($image_id){
-        $sql ="DELETE * FROM IMAGES WHERE image_id=:id ";
+        $sql ="DELETE  FROM IMAGES WHERE image_id=:id ";
         $prep= $this->conn->prepare($sql);
         return $prep->execute(['id'=>$image_id])? true:false;
         
@@ -51,7 +51,7 @@ class gallery extends database{
 
 
     public function delete_user_image($user_id){
-        $sql ="DELETE * FROM IMAGES WHERE user_id=:id ";
+        $sql ="DELETE  FROM IMAGES WHERE user_id=:id ";
         $prep= $this->conn->prepare($sql);
         return $prep->execute(['id'=>$user_id])? true: false;
     

@@ -5,7 +5,7 @@ create table users(
     id int primary key not null AUTO_INCREMENT,
     username varchar(20) not null,
     email varchar(30) not null,
-    user_password varchar(20) not null
+    user_password varchar(80) not null
 );
 
 create table images(

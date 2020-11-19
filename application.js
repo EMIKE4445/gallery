@@ -79,10 +79,17 @@ function register_user(){
             request.open('post','actions.php');
             request.setRequestHeader("content-type","application/x-www-form-urlencoded");
             request.onreadystatechange=function(){
-                if(this.status==4 && this.readyState==200){
+                if(this.status==200 && this.readyState==4){
                     //reload index page
-                    console.log(this.responseText);
-                
+                    let response=JSON.parse(this.response);
+                    if(response=='registered successfully'){
+                        document.getElementById('message').innerText=response; 
+                        setTimeout(reload,1500);
+                    }
+                    console.log(33445);
+                    console.log(document.getElementById('message'));
+                    console.log(response);
+                    
                 }
                 
             };
@@ -375,10 +382,13 @@ function delete_account_function(){
                 alert(JSON.parse(this.response));
                 if(JSON.parse(this.response)=='account deleted'){
                     setTimeout(reload,1000);
+                }else{
+                    alert('could not delete account');
                 }
             }
         };
-        request.send('action=delete_account');
+        let id=get_user_id();
+        request.send('action=delete_account&id='+id);
     }
 }
 
