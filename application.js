@@ -72,20 +72,27 @@ function register_user(){
     let confirm_password = document.getElementById('confirm-password').value;
     
     //add form validation code here
+    if(username && email && password){
+        if(password===confirm_password){
 
-    let request = new XMLHttpRequest();
-    request.open('post','actions.php');
-    request.setRequestHeader("content-type","application/x-www-form-urlencoded");
-    request.onreadystatechange=function(){
-        if(this.status==4 && this.readyState==200){
-            //reload index page
-            console.log(this.responseText);
-           
-        }
-        
-    };
-    request.send("action=register&username="+username+"&email="+email+"&password="+password);
-   
+            let request = new XMLHttpRequest();
+            request.open('post','actions.php');
+            request.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            request.onreadystatechange=function(){
+                if(this.status==4 && this.readyState==200){
+                    //reload index page
+                    console.log(this.responseText);
+                
+                }
+                
+            };
+            request.send("action=register&username="+username+"&email="+email+"&password="+password);
+        }else{
+            document.getElementById('message').innerText='passwords do not match';
+       }
+    }else{
+        document.getElementById('message').innerText='all fields are required';
+    }
 }
 
 
@@ -94,26 +101,29 @@ function log_user_in(){
     let username=document.getElementById('username').value;
     let password=document.getElementById('password').value;
 
-    let request= new XMLHttpRequest();
-    request.open('POST',"actions.php",);
-    request.setRequestHeader('content-type','application/x-www-form-urlencoded');
-    request.onreadystatechange=function(){
-        if(this.readyState==4 && this.status==200){
+    if(username && password){
+        let request= new XMLHttpRequest();
+        request.open('POST',"actions.php",);
+        request.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        request.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200){
+                
+                // console.log(this.responseText);
             
-            // console.log(this.responseText);
-        
-             if(JSON.parse(this.responseText)=='success'){
-                 reload();
-                 
-             }else{
-                 alert('could not login');
-             }
-        }
-        
-    };
+                if(JSON.parse(this.responseText)=='success'){
+                    reload();
+                    
+                }else{
+                    alert('could not login');
+                }
+            }
+            
+        };
 
-    request.send("action=login&username="+username+"&password="+password);
-
+        request.send("action=login&username="+username+"&password="+password);
+    }else{
+        document.getElementById('message').innerText='All fields are required';
+    }
 }
 
 //view form event event handler
