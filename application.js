@@ -238,7 +238,7 @@ function display_images(image_array){
         fragment.appendChild(container);
         
         //no need for this
-        //document.getElementsByClassName('no-image-message')[0].style.display='none';
+        document.getElementsByClassName('no-image-message')[0].style.display='none';
 
         }
         //appending to image display
@@ -249,13 +249,9 @@ function display_images(image_array){
         //finally appending to page
         
 
-        let existing=document.getElementsByClassName('main-l-images');
-    
-        if(existing.length>0){
-            main_display.replaceChild(image_wrap,existing[0]);
-        }else{
+            main_display.innerHTML='';
             main_display.appendChild(image_wrap);
-        }
+        
     
 }
 
