@@ -236,8 +236,9 @@ function display_images(image_array){
         
         //appending to document fragment
         fragment.appendChild(container);
-
-        document.getElementsByClassName('no-image-message')[0].style.display='none';
+        
+        //no need for this
+        //document.getElementsByClassName('no-image-message')[0].style.display='none';
 
         }
         //appending to image display
