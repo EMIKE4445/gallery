@@ -22,7 +22,7 @@ if(isset($_GET['form'])){
                 <label for="email">email:</label><br><input type="email" name="email" id="email" placeholder="email.." ><br>
                 <label for="password">password</label><br><input type="password" name="password" id="password" placeholder="password.."><br>
                 <label for="confirm_password">confirm password:</label><br><input type="password" name="confirm_password" id="confirm-password" placeholder="confirm password"><br>
-                <label for="remember_me">remember me <input type="radio" name="remember_me"></label><br>
+                
                 <input type="submit" value="register" id="register-btn">
                 <p class="message" id="message"></p>
             </form>

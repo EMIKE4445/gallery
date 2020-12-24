@@ -9,9 +9,18 @@ class user extends gallery{
         $sql="DELETE FROM users WHERE id=:ID";
         $prep=$this->conn->prepare($sql);
         $result=$prep->execute(['ID'=>$id]);
-        
+
+       
         if($result){
             if($this->delete_user_image($id)){
+
+                 //deletes image files
+                $user_images=$this->get_image_by_id($id);
+                foreach($user_images as $image){
+                     unlink('../images/uploaded_images/'.$image);
+                     echo 'deleting';
+                }
+    
                 
                 return 1;
             }else{

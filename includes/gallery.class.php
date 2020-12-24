@@ -30,7 +30,9 @@ class gallery extends database{
     public function insert_image($image_name,$user_id){
         $sql="INSERT INTO IMAGES (image_name,user_id) VALUES(:img_name,:user)";
         $prep=$this->conn->prepare($sql);
-        return $prep->execute(['img_name'=>$image_name,'user'=>$user_id])? true : false;
+        //var_dump($user_id,$image_name);
+        return $prep->execute(['img_name'=>$image_name,'user'=>$user_id]);
+        //return true;
         
     }
 
