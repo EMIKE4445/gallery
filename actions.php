@@ -139,6 +139,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
                                     
                                     $added_file=$user->insert_image($img_name.'.'.$img_type,$user_id);
                                     if($added_file){
+                                        //var_dump($added_file);
                                         echo json_encode("added file sucessfully") ;
                                     }else{
                                         echo json_encode('could not add to database');
@@ -188,7 +189,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ){
             
                 $user_id=$_GET['id'];
                 $results=$user->get_image_by_id($user_id);
-                echo $results? json_encode($results): json_encode('error');
+                echo json_encode($results);
                 break;
                 
             }

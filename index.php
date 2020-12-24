@@ -41,14 +41,15 @@ if(!$user->is_logged()){?>
             </div>
             <div class="user-info" id="user-info">
                 <span id="username"></span>
-                <span id="id">id: <span id="id-no"></span></span>
+                <span id="id">ID: <span id="id-no"></span></span>
 
             </div>
             <div class="view-by" id="view-by">
                 <form id="view-by-form" onsubmit="event.preventDefault(); load_images()">
                     <select name="view" id="view">
-                        <option value="1">My pictures</option>
                         <option value="2">All pictures</option>
+                        <option value="1">My pictures</option>
+                        
                     </select>
                     
                     <input type="submit" id="view-btn" value="view">
@@ -56,7 +57,7 @@ if(!$user->is_logged()){?>
             </div>
             
             <div class="acc-actions">
-                <a href="#" class="account">Account</a>
+                
                 <img src="images/app_images/menu.svg" alt="menu" class="menu-ham" id="menu-ham">
                 <ul class="acc-list">
                     <li><a href="#" id="upload-picture">upload picture</a></li>
@@ -67,6 +68,12 @@ if(!$user->is_logged()){?>
             </div>
             
         </header>
+        <div class="slide" id="slide">
+            <span class="close-text" id ="close-text" onclick='hide_slide()'>EXIT</span>
+            <span class="previous" onclick="previous_slide()">Previous</span>
+            <div class="slide-image" id="slide-image"></div>
+            <span class="next" onclick="next_slide()">Next</span>
+        </div>
         
         <div class="main-l" id="main-l">
 
@@ -77,9 +84,13 @@ if(!$user->is_logged()){?>
 echo<<<EOF
     
         <footer class="footer">
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+            
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+            </footer>
+            <script src='application.js'></script>
+          
         </footer>
-        <script src='application.js'></script>
+       
     </body>
     </html>
 EOF;

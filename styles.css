@@ -3,52 +3,53 @@
     margin: 0px;
 }
 body{
-    background-color: white;
+    background-color: #eefcfa;
     font-size: 16px;
     font-family: 'montserrat', sans-serif;
     letter-spacing: -0.2px;
-    overflow-x: hidden;
-
-    
+    overflow-x: hidden; 
+    box-sizing: border-box;  
 }
 
 .header-bar{
    /* position: absolute;*/
-    background-color:  #4a4747;
+    background-color: rgba(255,255,255,0.7);;
     display: block;
     width: 100%;
     height: 80px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     
 }
+
 .menu-ham{
     display: none;
 }
 
-.users-no{
-    color: wheat;
-
-}
-
-.site-logo{
-    margin-top: 1.5vh;
-}
 
 .site-logo span{
-    font-size: 50px;
-    color: bisque;
-    margin-left: 25px;
+    
+    font-size: 2.5rem;
+    color: #000000;
+    padding: 0.5rem;
 }
+
 .users-no{
-    position: absolute;
     right: 40px;
     top: 35px;
+    color: #000000;
+    padding: 10px;
+    margin-right: -5px;
 }
 
 .register-link{
     cursor: pointer;
     color: cadetblue;
     text-decoration: underline;
+}
+.slide{
+    display: none;
 }
 
 .maun-u{
@@ -64,20 +65,18 @@ body{
 
 .form-div{
     margin-left: 35%;
-    position:relative;
-    width: 320px;
-    
-    /* top: 20%;
-    right: 10%; */
+    position: relative;
+    min-width: 300px;
+    max-width: 20%;
     box-sizing: border-box;
     padding: 20px 30px;
-    box-shadow: 5px 3px 9px 1px black;
+    box-shadow: 4px 3px 13px 0px black;
     height: fit-content;
 }
 
 .form-div input{
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .form-div input[type="text"], input[type="password"],input[type="email"]{
@@ -107,9 +106,6 @@ body{
 
 
 .cta{
-    /* position: absolute;
-    left: 10%;
-    top: 30%; */
     font-size: 2rem;
     color: teal;
 }
@@ -126,41 +122,25 @@ body{
 
 .footer{
     position: fixed;
-    
-    background-color :rgb(218 216 204);
+    background-color :rgb(133, 131, 131);
     width: 100vw;
-    text-align: center;
     height: 50px;
     bottom: 0px;
     opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-bar .acc-actions{
     display: inline-block;
-    position: absolute;
-    right: 1vw;
-    top: 2vh;
-}
-.account{
-    text-decoration: none;
-    color: #999a8cb5;
-    font-size: 30px;
 }
 
-.view-by{
-    position: absolute;
-    left: 50%;
-}
-
-.view-by form{
-    margin-top: 2vh;
-}
 
 .view-by select{
     border: none;
     background: transparent;
-    width: 150px;
-    height: 40px;
+    height: 30px;
     outline: none;
     font-size: 18px;
 }
@@ -168,44 +148,32 @@ body{
 #view-btn{
     border: none;
     outline: none;
-    height: 40px;
-    width: 7vw;
-    background: #553939;
+    height: 35px;
+    width: 45px;
+    background: #73b8ca;
     color: #fff;
-    font-size: 18px;
+    font-size: 1rem;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .user-info{
+    display: flex;
+    flex-direction: column;
     font-size: 0.9em;
-    margin-left: 3vw;
-    margin-top: 3vh;
     color: #6a7571;
-}
-.user-info span{
-   margin-left: 10px;
 }
 
 .acc-list{
-    position: fixed;
-    display: none;
-    background-color: #262626;
+    
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px 10px 20px;
     list-style-type: none;
     height:fit-content ;
-    padding: 4px;
-    z-index: 2 !important;
-    
     right: 2vw;
-
 }
-.acc-list li{
-   /* display: block;*/
-    height: 30px;
-    margin: 10px 5px;
-    width: 100%;
-    
 
-}
 
 .acc-list a{
     text-decoration: none;
@@ -217,17 +185,13 @@ body{
     background-color: blanchedalmond;
 }
 
-.acc-actions:hover .acc-list {
-    display: block;
-}
-
 
 .image-upload{
     position: absolute;
     width: 320px;
     height: 420px;
     top: 20%;
-    right: 50%;
+    right: 35%;
     box-sizing: border-box;
     padding: 20px 30px;
     box-shadow: 5px 3px 9px 1px black;
@@ -271,7 +235,6 @@ body{
 }
 
 .main-l-images{
-    position: relative;
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -284,32 +247,36 @@ body{
 .image-container{
     position: relative;
     width: 300px;
-    min-height: 1px;
-    padding-right: 10px;
-    padding-left: 10px;
     max-width: 50%;
-    margin: 10px;
+    margin: 2px;
 }
 
 .image-image{
-
     width: 100%;
-    height: 300px;
-    
+    height:300px;
     object-fit: cover;
 }
 
 .image-data{
-    position: relative;
+    position: absolute;
     width: 100%;
-   
+    top: 60%;
+    height: 40%;
+    border-radius: 8px;
+    font-size:1rem ;
+    color: ghostwhite;
+    background-color: #58616a;
+    opacity: 0.9;
     margin-top: 1px;
-    display: flex;
+    display: none;
     justify-content: space-around;
-    font-size: 10px;
+    align-items: center;
     text-align: center;
 }
 
+.image-container:hover .image-data{
+    display: flex;
+}
 
 .form-div-password  {
     position: absolute;
@@ -361,110 +328,191 @@ body{
 .no-image-message{
     position: absolute;
     top: 20%;
-    left: 30%;
+    left: 45%;
     font-size: larger;
     color: cadetblue;
 }
 
+.slide{
+    position: fixed;
+    display: none;
+    z-index: 2;
+    width: 100vw;
+    background-color: black;
+    top: 0px;
+    height: 100vh;
+    color: white;
+   
+}
+
+.next{
+    position: absolute;
+    top: 40%;
+    font-size: 20px;
+    padding: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.next:hover,.previous:hover{
+    background-color: black;
+    opacity: 0.7;
+    color: #fff;
+}
+
+
+
+.previous{
+    position: absolute;
+    top: 40%;
+    font-size: 20px;
+    padding: 10px;
+    left: 0px;
+    cursor: pointer;
+    
+}
+
+
+.slide-image{
+    
+    height: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 80%;
+    margin: auto;
+    
+    
+}
+
+.close-text{
+    position: absolute;
+    margin: 30px 30px 0px 0px;
+    right: 0px;
+    padding: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: black;
+    opacity: 0.7;
+}
+
+.close-text:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    opacity: 1;
+}
+
+
+
+
+
+@media only screen and (max-width:1076px){
+    .acc-list{
+        display: none;
+        flex-direction: column;
+        background-color: #e1e0d6;
+        z-index: 10;
+        position: fixed;
+        top: 50px;
+    }
+    
+    
+    .menu-ham{
+        display: inline-block;
+        right: 1vw;
+        height: 50px;
+        cursor: pointer;
+        position: relative;
+        right: 20px;
+
+    }
+
+    .acc-list li{
+        /* display: block;*/
+        padding: 10px
+    }
+
+
+    .acc-actions:hover .acc-list{
+        display: flex !important;
+    }
+   
+}
 
 
 @media only screen and (max-width:820px){
     .site-logo span {
-        font-size: 40px;
-        color: bisque;
-        margin-left: 2vw;
-        
+        font-size: 2.6rem;      
     }
-    
-    .user-info{
-        margin-left: 2vw;
-    }
-    .user-info span {
-        margin-left: 2px;
+    .menu-ham{
+        width: 40px;
+        margin-right: -10px;
     }
 }
 
 
-@media only screen and (max-width:687px){
-    .view-by,.acc-actions{
-        display: none;
-    }
-    .account{
-        display: none;
-    }
-    .menu-ham{
-        display: inline-block;
-        position: absolute;
-        right: 1vw;
-        height: 6vh;
-        margin-top: -1vh;
-        cursor: pointer;
-    }
-    .user-info{
-        display: inline-block;
-        margin-left: 10%;
-        font-size: large;
-    }
-    .menu-ham:hover~.acc-list{
-        display: block !important;
-    }
-    .main-l{
-        margin-top: 40px;
-    }
-    .view-by{
-        position: absolute;
-        display: block;
-        left: 35%;
-        top: 7%;
-    }
-    #view-btn{
-        width: 50px;
-    }
-    
-}
 
-@media only screen and (max-width:477px){
-    .menu-ham{
-        height: 10vw;
-        margin-top: 0.5vh;
+@media only screen and (max-width:530px){
+       
+    .site-logo span {
+        font-size: 2.3rem;      
     }
-    .view-by{
-        left: 50%;
-        
-    }
+
     .form-div{
         margin-left: 15%;
     }
     .user-info{
-        position: absolute;
-        top: 7%;
-        font-size: 15px;
-        margin-left: 0px;
+       display: none;
+    }
+    .view-by{
+        margin-left: -50px;
+    }
+
+    .menu-ham{
+        width: 35px;
     }
 }
 
 @media only screen and (max-width:430px){
-    .site-logo{
-        margin-top: 0.9vh;
-        height: fit-content;
+   
+    .header-bar{
+        height: 50px;
     }
-    .user-info{
-        top: 4%;
+    .site-logo span {
+        font-size: 2rem;
     }
-    .view-by{
-        left: 3%;
-    }
+    
+    
     .form-div{
         margin-left: 5%;
     }
-    .users-no{
-        right: 2px;
-    }
+   
 }
 
 
 
+@media only screen and (max-width:376px){
+    .menu-ham{
+        width: 30px;
+    }
 
+    .view-by select{
+        width: 40px;
+    }
+    #view-btn{
+        width: 35px;
+        height: 30px;
+    }
+    .site-logo span {
+        font-size:1.5rem;
+        
+    }
+    
+    .form-div{
+        width: 250px;
+    }
+    
+}
 
 
 

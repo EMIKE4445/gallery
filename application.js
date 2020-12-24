@@ -8,6 +8,10 @@ let user_info=document.getElementById('user-info');
 
 
 
+
+
+
+
 function display_register_form(){
     let request=new XMLHttpRequest();
     request.open('GET','views/forms.php?form=register');
@@ -146,8 +150,11 @@ function load_images (){
         if(this.readyState==4 && this.status==200){
             
             let response=JSON.parse(this.response);
-            if(response!=='error'){
+            if(response.length !== 0){
+                
                 display_images(response);
+                
+               
             }else{
                
                     let message = document.createElement('p');
@@ -196,7 +203,7 @@ function get_user_id(){
 function display_images(image_array){
     let fragment=document.createDocumentFragment();
   
-       console.log(image_array);
+       
         for(let i=0; i<image_array.length;i++){
         
         let container=document.createElement('div');
@@ -227,6 +234,9 @@ function display_images(image_array){
             //adding class to image
             image.classList+=' image-image';
 
+            //adding slide sow event listener to image
+            image.addEventListener('click',show_slide);
+
             //adding class to container
             container.classList+=' image-container';
 
@@ -234,11 +244,12 @@ function display_images(image_array){
         container.appendChild(image);
         container.appendChild(data);
         
+        
         //appending to document fragment
         fragment.appendChild(container);
         
         //no need for this
-        document.getElementsByClassName('no-image-message')[0].style.display='none';
+        //document.getElementsByClassName('no-image-message')[0].style.display='none';
 
         }
         //appending to image display
@@ -251,6 +262,7 @@ function display_images(image_array){
 
             main_display.innerHTML='';
             main_display.appendChild(image_wrap);
+            //console.log(image_wrap);
         
     
 }
@@ -404,3 +416,75 @@ function logout_function(){
         request.send('action=logout');
     }
 }
+
+
+
+
+//variabe to store images, tp be used in slideshow instantiated in load images function
+let images_;
+
+
+
+//variable to store current mage in slide
+let current_image;
+
+function set_index(image){
+   
+    for(let i=0; i<images_.length;i++){
+       
+        
+        if(images_[i]==image){
+            
+            current_image=i;
+            
+        }
+    }
+    
+}
+
+function hide_slide(){
+    document.getElementById('slide').style.display="none";
+}
+
+function show_slide(event){
+
+    images_=document.getElementById('main-l').querySelectorAll('img');
+    
+    
+    set_index(event.target);
+    let slide=document.getElementById('slide');
+    slide.style.display="block";
+    
+    show_image(event.target);
+    
+}
+
+function show_image(image){
+    
+    let slide_image=document.getElementById('slide-image');
+    slide_image.style.backgroundImage='url('+image.src+')';
+    
+}
+
+function next_slide(){
+    current_image+=1;
+
+   if(current_image==images_.length){
+       current_image=0;
+   }
+  
+   show_image(images_[current_image]);
+}
+
+function previous_slide(){
+    
+
+   if(current_image==0){
+       current_image= (images_.length -1);
+   }else{
+    current_image-=1;
+   }
+
+   show_image(images_[current_image]);
+}
+
