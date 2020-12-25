@@ -453,7 +453,7 @@ function show_slide(event){
     
     set_index(event.target);
     let slide=document.getElementById('slide');
-    slide.style.display="block";
+    slide.style.display="flex";
     
     show_image(event.target);
     

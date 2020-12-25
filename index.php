@@ -69,10 +69,10 @@ if(!$user->is_logged()){?>
             
         </header>
         <div class="slide" id="slide">
-            <span class="close-text" id ="close-text" onclick='hide_slide()'>EXIT</span>
-            <span class="previous" onclick="previous_slide()">Previous</span>
+            <span class="close-text" id ="close-text" onclick='hide_slide()'>x</span>
+            <span class="previous" onclick="previous_slide()"><</span>
             <div class="slide-image" id="slide-image"></div>
-            <span class="next" onclick="next_slide()">Next</span>
+            <span class="next" onclick="next_slide()">></span>
         </div>
         
         <div class="main-l" id="main-l">
