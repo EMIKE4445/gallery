@@ -65,7 +65,7 @@ class user extends gallery{
            
            return true;
        }else{
-           var_dump($result);
+           //var_dump($result);
            return false;
        }
     }
