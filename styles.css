@@ -261,10 +261,10 @@ body{
     position: absolute;
     width: 100%;
     top: 60%;
-    height: 40%;
+    height: 30%;
     font-size:1rem ;
     color: #c5c5c5;
-    background-color: #58616a;
+    background-color: #909395;
     opacity: 0.9;
     margin-top: 1px;
     display: none;
